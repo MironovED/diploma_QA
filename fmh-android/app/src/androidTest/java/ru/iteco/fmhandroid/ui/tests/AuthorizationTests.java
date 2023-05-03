@@ -61,7 +61,7 @@ public class AuthorizationTests {
         AuthorizationSteps.clickEnterButton();
 
         //На этой проверке тест зависает - вемя идет и никаких реакций
-        //AuthorizationSteps.checkInvalidData(activityTestRule);
+        AuthorizationSteps.checkInvalidData(activityTestRule);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class AuthorizationTests {
         AuthorizationSteps.clickEnterButton();
 
         //На этой проверке тест зависает - вемя идет и никаких реакций
-        //AuthorizationSteps.checkEmptyField(activityTestRule);
+        AuthorizationSteps.checkEmptyField(activityTestRule);
     }
 
 

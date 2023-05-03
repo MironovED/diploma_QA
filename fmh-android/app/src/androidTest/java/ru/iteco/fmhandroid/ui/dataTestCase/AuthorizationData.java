@@ -15,7 +15,7 @@ public class AuthorizationData {
     public static ViewInteraction enterButton = onView(withId(R.id.enter_button));
     public static ViewInteraction emblemID = onView(withId(R.id.trademark_image_view));
     public static ViewInteraction logOutButton = onView(withId(R.id.authorization_image_button));
-    public static ViewInteraction textExit = onView(withText("Выйти"));
-    public static ViewInteraction textAuthorization = onView(withText("Авторизация"));
+    public static ViewInteraction textExit = onView(withText("Log out"));
+    public static ViewInteraction textAuthorization = onView(withText("Authorization"));
 
 }
