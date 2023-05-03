@@ -14,9 +14,6 @@ import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
 
-
-
-
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AuthorizationTests {
@@ -60,7 +57,6 @@ public class AuthorizationTests {
         AuthorizationSteps.enterPass(inValidPassword);
         AuthorizationSteps.clickEnterButton();
 
-        //На этой проверке тест зависает - вемя идет и никаких реакций
         AuthorizationSteps.checkInvalidData(activityTestRule);
     }
 
@@ -70,10 +66,8 @@ public class AuthorizationTests {
 
         AuthorizationSteps.clickEnterButton();
 
-        //На этой проверке тест зависает - вемя идет и никаких реакций
         AuthorizationSteps.checkEmptyField(activityTestRule);
     }
-
 
     @Test
     @DisplayName("Авторизация без пароля")
@@ -82,51 +76,30 @@ public class AuthorizationTests {
         AuthorizationSteps.enterLogin(validLogin);
         AuthorizationSteps.clickEnterButton();
 
-        //На этой проверке тест зависает - вемя идет и никаких реакций
-        //AuthorizationSteps.checkEmptyField(activityTestRule);
+        AuthorizationSteps.checkEmptyField(activityTestRule);
     }
+
+    @Test
+    @DisplayName("Повторная авторизация после выхода из учетной записи")
+    public void shouldLogInAfterLogOut() {
+
+        AuthorizationSteps.enterLogin(validLogin);
+        AuthorizationSteps.enterPass(validPassword);
+        AuthorizationSteps.clickEnterButton();
+
+        AuthorizationSteps.checkAuthorization();
+
+        AuthorizationSteps.logOut();
+        AuthorizationSteps.checkIsAuthorizationScreen();
+
+        AuthorizationSteps.enterLogin(validLogin);
+        AuthorizationSteps.enterPass(validPassword);
+        AuthorizationSteps.clickEnterButton();
+
+        //Валится тест на проверке
+        AuthorizationSteps.checkAuthorization();
+    }
+
 }
-
-
-//    @Test
-//    @DisplayName("Повторная авторизация после выхода из учетной записи")
-//    public void shouldLogInAfterLogOut() {
-//
-//        ViewInteraction textInputEditText = onView(withId(R.id.login_text_input));
-//
-//        textInputEditText.check(matches(isDisplayed()));
-//        textInputEditText.perform(replaceText(validLogin));
-//
-//        ViewInteraction textInputEditText2 = onView(withId(R.id.password_text_input));
-//        textInputEditText2.check(matches(isDisplayed()));
-//        textInputEditText2.perform(replaceText(validPassword), closeSoftKeyboard());
-//
-//
-//        ViewInteraction materialButton = onView(withId(R.id.enter_button));
-//        materialButton.perform(click());
-//
-//        ViewInteraction viewGroup = onView(withId(R.id.trademark_image_view));
-//        viewGroup.check(matches(isDisplayed()));
-//
-//        ViewInteraction logOut = onView(withId(R.id.authorization_image_button));
-//        logOut.perform(click());
-//        ViewInteraction logOut2 = onView(withText("Выйти"));
-//        logOut2.perform(click());
-//
-//
-//        ViewInteraction textInputEditText1 = onView(withId(R.id.login_text_input));
-//        textInputEditText1.check(matches(isDisplayed()));
-//        textInputEditText1.perform(replaceText(validLogin));
-//        ViewInteraction textInputEditText3 = onView(withId(R.id.password_text_input));
-//        textInputEditText3.check(matches(isDisplayed()));
-//        textInputEditText3.perform(replaceText(validPassword), closeSoftKeyboard());
-//        viewGroup.check(matches(isDisplayed()));
-//
-//        ViewInteraction viewGroup1 = onView(withId(R.id.trademark_image_view));
-//        viewGroup1.check(matches(isDisplayed()));
-//
-//    }
-
-
 
 
