@@ -54,6 +54,12 @@ public class AuthorizationSteps {
         AuthorizationData.passField.perform(replaceText(password));
     }
 
+    public static void logIn(String login, String password) {
+        enterLogin(login);
+        enterPass(password);
+        clickEnterButton();
+    }
+
     //нажать кнопку войти
     public static void clickEnterButton() {
         AuthorizationData.enterButton.perform(click());

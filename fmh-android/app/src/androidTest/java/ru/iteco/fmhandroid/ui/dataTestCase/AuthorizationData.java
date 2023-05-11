@@ -9,6 +9,10 @@ import androidx.test.espresso.ViewInteraction;
 import ru.iteco.fmhandroid.R;
 
 public class AuthorizationData {
+    public static String validLogin = "login2";
+    public static String validPass = "password2";
+    public static String inValidLogin = "login";
+    public static String inValidPassword = "password";
 
     public static ViewInteraction loginField = onView(withId(R.id.login_text_input));
     public static ViewInteraction passField = onView(withId(R.id.password_text_input));
@@ -17,5 +21,6 @@ public class AuthorizationData {
     public static ViewInteraction logOutButton = onView(withId(R.id.authorization_image_button));
     public static ViewInteraction textExit = onView(withText("Log out"));
     public static ViewInteraction textAuthorization = onView(withText("Authorization"));
+
 
 }

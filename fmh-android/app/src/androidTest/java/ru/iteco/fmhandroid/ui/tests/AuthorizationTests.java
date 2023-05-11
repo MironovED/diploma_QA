@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
+import ru.iteco.fmhandroid.ui.dataTestCase.AuthorizationData;
 import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
 
 @LargeTest
@@ -37,13 +38,12 @@ public class AuthorizationTests {
         }
     }
 
-
     @Test
     @DisplayName("Авторизация зарегистрированным пользователем")
     public void shouldLogInWithValidData() {
 
-        AuthorizationSteps.enterLogin(validLogin);
-        AuthorizationSteps.enterPass(validPassword);
+        AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
+        AuthorizationSteps.enterPass(AuthorizationData.validPass);
         AuthorizationSteps.clickEnterButton();
 
         AuthorizationSteps.checkAuthorization();
@@ -53,8 +53,8 @@ public class AuthorizationTests {
     @DisplayName("Авторизация не зарегистрированным пользователем")
     public void shouldNotLogInWithInValidData() {
 
-        AuthorizationSteps.enterLogin(inValidLogin);
-        AuthorizationSteps.enterPass(inValidPassword);
+        AuthorizationSteps.enterLogin(AuthorizationData.inValidLogin);
+        AuthorizationSteps.enterPass(AuthorizationData.inValidPassword);
         AuthorizationSteps.clickEnterButton();
 
         AuthorizationSteps.checkInvalidData(activityTestRule);
@@ -73,7 +73,7 @@ public class AuthorizationTests {
     @DisplayName("Авторизация без пароля")
     public void shouldNotLogInWithEmptyPassword() {
 
-        AuthorizationSteps.enterLogin(validLogin);
+        AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
         AuthorizationSteps.clickEnterButton();
 
         AuthorizationSteps.checkEmptyField(activityTestRule);
@@ -83,8 +83,8 @@ public class AuthorizationTests {
     @DisplayName("Повторная авторизация после выхода из учетной записи")
     public void shouldLogInAfterLogOut() {
 
-        AuthorizationSteps.enterLogin(validLogin);
-        AuthorizationSteps.enterPass(validPassword);
+        AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
+        AuthorizationSteps.enterPass(AuthorizationData.validPass);
         AuthorizationSteps.clickEnterButton();
 
         AuthorizationSteps.checkAuthorization();
@@ -92,8 +92,8 @@ public class AuthorizationTests {
         AuthorizationSteps.logOut();
         AuthorizationSteps.checkIsAuthorizationScreen();
 
-        AuthorizationSteps.enterLogin(validLogin);
-        AuthorizationSteps.enterPass(validPassword);
+        AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
+        AuthorizationSteps.enterPass(AuthorizationData.validPass);
         AuthorizationSteps.clickEnterButton();
 
         //Валится тест на проверке

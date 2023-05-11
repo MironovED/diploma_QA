@@ -12,15 +12,13 @@ import org.junit.runner.RunWith;
 
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
-import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
+import ru.iteco.fmhandroid.ui.dataTestCase.AuthorizationData;
 import ru.iteco.fmhandroid.ui.stepsTestCase.ActionBarSteps;
+import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class ActionBarTests {
-
-    String validLogin = "login2";
-    String validPassword = "password2";
 
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
@@ -32,16 +30,14 @@ public class ActionBarTests {
         try {
             AuthorizationSteps.checkIsAuthorizationScreen();
         } catch (NoMatchingViewException e) {
-            AuthorizationSteps.logOut();
+            return;
         }
+        AuthorizationSteps.logIn(AuthorizationData.validLogin, AuthorizationData.validPass);
     }
 
     @Test
     @DisplayName("Переход в раздел тематических цитат")
     public void shouldGoToThematicQuotes() {
-        AuthorizationSteps.enterLogin(validLogin);
-        AuthorizationSteps.enterPass(validPassword);
-        AuthorizationSteps.clickEnterButton();
         ActionBarSteps.clickOurMissionButton();
 
         ActionBarSteps.checkOurMission();
@@ -50,9 +46,6 @@ public class ActionBarTests {
     @Test
     @DisplayName("Переход в раздел Claims")
     public void shouldGoToClaims() {
-        AuthorizationSteps.enterLogin(validLogin);
-        AuthorizationSteps.enterPass(validPassword);
-        AuthorizationSteps.clickEnterButton();
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
 
@@ -62,9 +55,6 @@ public class ActionBarTests {
     @Test
     @DisplayName("Переход в раздел News")
     public void shouldGoToNews() {
-        AuthorizationSteps.enterLogin(validLogin);
-        AuthorizationSteps.enterPass(validPassword);
-        AuthorizationSteps.clickEnterButton();
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
 
@@ -74,9 +64,6 @@ public class ActionBarTests {
     @Test
     @DisplayName("Переход в раздел About")
     public void shouldGoToAbout() {
-        AuthorizationSteps.enterLogin(validLogin);
-        AuthorizationSteps.enterPass(validPassword);
-        AuthorizationSteps.clickEnterButton();
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickAboutButton();
 
