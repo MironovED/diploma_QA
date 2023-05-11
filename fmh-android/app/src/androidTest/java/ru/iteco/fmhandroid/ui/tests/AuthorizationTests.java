@@ -19,11 +19,6 @@ import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
 @RunWith(AndroidJUnit4.class)
 public class AuthorizationTests {
 
-    String validLogin = "login2";
-    String validPassword = "password2";
-    String inValidLogin = "login";
-    String inValidPassword = "password";
-
     @Rule
     public ActivityTestRule<AppActivity> activityTestRule =
             new ActivityTestRule<>(AppActivity.class);
@@ -41,7 +36,6 @@ public class AuthorizationTests {
     @Test
     @DisplayName("Авторизация зарегистрированным пользователем")
     public void shouldLogInWithValidData() {
-
         AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
         AuthorizationSteps.enterPass(AuthorizationData.validPass);
         AuthorizationSteps.clickEnterButton();
@@ -52,7 +46,6 @@ public class AuthorizationTests {
     @Test
     @DisplayName("Авторизация не зарегистрированным пользователем")
     public void shouldNotLogInWithInValidData() {
-
         AuthorizationSteps.enterLogin(AuthorizationData.inValidLogin);
         AuthorizationSteps.enterPass(AuthorizationData.inValidPassword);
         AuthorizationSteps.clickEnterButton();
@@ -63,7 +56,6 @@ public class AuthorizationTests {
     @Test
     @DisplayName("Авторизация без логина и пароля")
     public void shouldNotLogInWithEmptyData() {
-
         AuthorizationSteps.clickEnterButton();
 
         AuthorizationSteps.checkEmptyField(activityTestRule);
@@ -72,7 +64,6 @@ public class AuthorizationTests {
     @Test
     @DisplayName("Авторизация без пароля")
     public void shouldNotLogInWithEmptyPassword() {
-
         AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
         AuthorizationSteps.clickEnterButton();
 
@@ -82,7 +73,6 @@ public class AuthorizationTests {
     @Test
     @DisplayName("Повторная авторизация после выхода из учетной записи")
     public void shouldLogInAfterLogOut() {
-
         AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
         AuthorizationSteps.enterPass(AuthorizationData.validPass);
         AuthorizationSteps.clickEnterButton();

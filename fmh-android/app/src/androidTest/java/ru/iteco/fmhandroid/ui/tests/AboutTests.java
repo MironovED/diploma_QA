@@ -36,7 +36,7 @@ public class AboutTests {
     }
 
     @Test
-    @DisplayName("Переход по ссылке политики конфиденциальности")
+    @DisplayName("Переход по ссылке Политика конфиденциальности")
     public void shouldGoToPrivacyPolicy() {
         AboutSteps.goToAbout();
         AboutSteps.clickPrivacyPolicy();
