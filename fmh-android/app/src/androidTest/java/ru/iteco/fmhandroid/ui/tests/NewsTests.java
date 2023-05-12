@@ -1,7 +1,6 @@
 package ru.iteco.fmhandroid.ui.tests;
 
 import androidx.test.espresso.NoMatchingViewException;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -15,7 +14,6 @@ import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.dataTestCase.AuthorizationData;
 import ru.iteco.fmhandroid.ui.dataTestCase.NewsData;
-import ru.iteco.fmhandroid.ui.stepsTestCase.AboutSteps;
 import ru.iteco.fmhandroid.ui.stepsTestCase.ActionBarSteps;
 import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
 import ru.iteco.fmhandroid.ui.stepsTestCase.NewsSteps;
@@ -40,7 +38,7 @@ public class NewsTests {
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по объявлению")
+    @DisplayName("Фильтрация новостей по 'Объявления'")
     public void shouldBeFilteredByNotice() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -49,11 +47,11 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.notice);
         NewsSteps.clickFilterButton();
 
-        NewsSteps.checkFilter(NewsData.birthday);
+        NewsSteps.checkFilter(NewsData.notice);
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по дню рождения")
+    @DisplayName("Фильтрация новостей по 'День рождения'")
     public void shouldBeFilteredByBirthday() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -62,11 +60,11 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.birthday);
         NewsSteps.clickFilterButton();
 
-
+        NewsSteps.checkFilter(NewsData.birthday);
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по зарплате")
+    @DisplayName("Фильтрация новостей по 'Зарплата'")
     public void shouldBeFilteredBySalary() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -75,11 +73,11 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.salary);
         NewsSteps.clickFilterButton();
 
-
+        NewsSteps.checkFilter(NewsData.salary);
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по профсоюзу")
+    @DisplayName("Фильтрация новостей по 'Профсоюз'")
     public void shouldBeFilteredByTradeUnion() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -88,11 +86,11 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.tradeUnion);
         NewsSteps.clickFilterButton();
 
-
+        NewsSteps.checkFilter(NewsData.tradeUnion);
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по празднику")
+    @DisplayName("Фильтрация новостей по 'Праздник'")
     public void shouldBeFilteredByHoliday() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -101,11 +99,11 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.holiday);
         NewsSteps.clickFilterButton();
 
-
+        NewsSteps.checkFilter(NewsData.holiday);
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по массажу")
+    @DisplayName("Фильтрация новостей по 'Массаж'")
     public void shouldBeFilteredByMassage() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -114,11 +112,11 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.massage);
         NewsSteps.clickFilterButton();
 
-
+        NewsSteps.checkFilter(NewsData.massage);
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по благодарности")
+    @DisplayName("Фильтрация новостей по 'Благодарность'")
     public void shouldBeFilteredByThank() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -127,11 +125,11 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.thank);
         NewsSteps.clickFilterButton();
 
-
+        NewsSteps.checkFilter(NewsData.thank);
     }
 
     @Test
-    @DisplayName("Фильтрация новостей по нужна помощь")
+    @DisplayName("Фильтрация новостей по 'Нужна помощь'")
     public void shouldBeFilteredByHelp() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
@@ -140,7 +138,7 @@ public class NewsTests {
         NewsSteps.insertCategory(NewsData.help);
         NewsSteps.clickFilterButton();
 
-
+        NewsSteps.checkFilter(NewsData.help);
     }
 
 //    @Test
