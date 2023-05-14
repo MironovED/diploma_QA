@@ -3,6 +3,7 @@ package ru.iteco.fmhandroid.ui.dataTestCase;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.espresso.ViewInteraction;
@@ -24,12 +25,14 @@ public class NewsData {
     public static ViewInteraction newsFilterButton = onView(withId(R.id.filter_news_material_button));
     public static ViewInteraction filterButton = onView(withId(R.id.filter_button));
 
-    public static ViewInteraction recyclerView =onView(withId(R.id.news_list_recycler_view));
-
+    public static ViewInteraction fieldDateStart = onView(withId(R.id.news_item_publish_date_start_text_input_edit_text));
+    public static ViewInteraction fieldDateEnd = onView(withId(R.id.news_item_publish_date_end_text_input_edit_text));
+    public static ViewInteraction buttonOkInFilter = onView(allOf(withId(android.R.id.button1), withText("OK")));
 
     // Сортировка новостей
     public static ViewInteraction sortNewsButton = onView(withId(R.id.sort_news_material_button));
 
+    public static ViewInteraction recyclerView = onView(withId(R.id.news_list_recycler_view));
 
 
 

@@ -10,6 +10,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.dataTestCase.AuthorizationData;
@@ -43,7 +46,6 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.notice);
         NewsSteps.clickFilterButton();
 
@@ -56,7 +58,6 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.birthday);
         NewsSteps.clickFilterButton();
 
@@ -69,7 +70,6 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.salary);
         NewsSteps.clickFilterButton();
 
@@ -82,7 +82,6 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.tradeUnion);
         NewsSteps.clickFilterButton();
 
@@ -95,7 +94,6 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.holiday);
         NewsSteps.clickFilterButton();
 
@@ -108,7 +106,6 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.massage);
         NewsSteps.clickFilterButton();
 
@@ -121,7 +118,6 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.thank);
         NewsSteps.clickFilterButton();
 
@@ -134,35 +130,36 @@ public class NewsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickNewsButton();
         NewsSteps.clickNewsFilterButton();
-        NewsSteps.selectCategory();
         NewsSteps.insertCategory(NewsData.help);
         NewsSteps.clickFilterButton();
 
         NewsSteps.checkFilter(NewsData.help);
     }
 
-//    @Test
-//    @DisplayName("Фильтрация новостей по дате")
-//    public void should16() {
-//        ActionBarSteps.clickMainMenuButton();
-//        ActionBarSteps.clickNewsButton();
-//        NewsSteps.clickNewsFilterButton();
-//        NewsSteps.selectCategory();
-//        NewsSteps.insertCategory("дата");
-//        NewsSteps.clickFilterButton();
-//
-//
-//    }
+    @Test
+    @DisplayName("Фильтрация новостей по дате")
+    public void shouldBeFilteredByDate() {
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickNewsButton();
+        NewsSteps.clickNewsFilterButton();
+        NewsSteps.insertCategory(NewsData.notice);
+        NewsSteps.selectDateStart();
+        NewsSteps.selectDateEnd();
 
-//////
+        String currentDate = new SimpleDateFormat("dd.MM.YYYY").format(new Date());
+        NewsSteps.checkFilter(currentDate);
+    }
 
-//    @Test
-//    @DisplayName("Упорядочивание списка новостей")
-//    public void should2() {
-//
-//
-//
-//    }
+
+    @Test
+    @DisplayName("Упорядочивание списка новостей")
+    public void shouldSortList() {
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickNewsButton();
+        NewsSteps.clickSortButton();
+
+        NewsSteps.checkSort();
+    }
 //
 //    @Test
 //    @DisplayName("Фильтрация новостей в режиме редактирования списка")
