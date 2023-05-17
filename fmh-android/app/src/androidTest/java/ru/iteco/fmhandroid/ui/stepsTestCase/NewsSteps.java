@@ -38,7 +38,7 @@ public class NewsSteps {
     }
 
     public static void checkFilter(String notice) {
-        onView(Helper.withIndex(withText(notice), 0)).check(matches(isDisplayed()));;
+        onView(Helper.withIndex(withText(notice), 0)).check(matches(isDisplayed()));
     }
 
     public static  void selectDateStart() {

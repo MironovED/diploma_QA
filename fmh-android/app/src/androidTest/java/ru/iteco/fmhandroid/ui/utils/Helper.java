@@ -32,7 +32,7 @@ public class Helper {
         };
     }
 
-    private static Matcher<View> childAtPosition(
+    public static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
         return new TypeSafeMatcher<View>() {
@@ -51,7 +51,6 @@ public class Helper {
         };
     }
 
-////
     public static Matcher<View> hasItemAtPosition(final Matcher<View> matcher, final int position) {
         return new BoundedMatcher<View, RecyclerView>(RecyclerView.class) {
             @Override
@@ -66,5 +65,7 @@ public class Helper {
             }
         };
     }
+
+
 
 }
