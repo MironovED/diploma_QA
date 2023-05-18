@@ -41,13 +41,12 @@ public class ClaimsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
         ClaimsSteps.clickClaimsFilterButton();
+
         ClaimsSteps.clickCheckBoxInProgress();
         ClaimsSteps.clickButtonOkInFiltering();
 
         ClaimsSteps.clickFirstClaim();
         ClaimsSteps.checkStatusClaim("Open");
-
-
     }
 
     @Test
@@ -56,6 +55,7 @@ public class ClaimsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
         ClaimsSteps.clickClaimsFilterButton();
+
         ClaimsSteps.clickCheckBoxOpen();
         ClaimsSteps.clickButtonOkInFiltering();
 
@@ -69,6 +69,7 @@ public class ClaimsTests {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
         ClaimsSteps.clickClaimsFilterButton();
+
         ClaimsSteps.clickCheckBoxOpen();
         ClaimsSteps.clickCheckBoxInProgress();
         ClaimsSteps.clickCheckBoxExecuted();
@@ -76,7 +77,6 @@ public class ClaimsTests {
 
         ClaimsSteps.clickFirstClaim();
         ClaimsSteps.checkStatusClaim("Executed");
-
     }
 
     @Test
@@ -93,7 +93,6 @@ public class ClaimsTests {
 
         ClaimsSteps.clickFirstClaim();
         ClaimsSteps.checkStatusClaim("Canceled");
-
     }
 
 }

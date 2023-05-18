@@ -21,6 +21,7 @@ import ru.iteco.fmhandroid.ui.stepsTestCase.ActionBarSteps;
 import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
 import ru.iteco.fmhandroid.ui.stepsTestCase.NewsSteps;
 
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class NewsTests {
@@ -160,43 +161,89 @@ public class NewsTests {
 
         NewsSteps.checkSort();
     }
-//
-//    @Test
-//    @DisplayName("Фильтрация новостей в режиме редактирования списка")
-//    public void should3() {
-//
-//    }
-//
-//    @Test
-//    @DisplayName("Создание новости")
-//    public void should5() {
-//
-//    }
-//
-//    @Test
-//    @DisplayName("Создание новости с пустыми полями")
-//    public void should8() {
-//
-//    }
-//
-//    @Test
-//    @DisplayName("Редактирование существующей новости")
-//    public void should6() {
-//
-//    }
-//
-//    @Test
-//    @DisplayName("Выход из режима редактирования новости без сохранения")
-//    public void should7() {
-//
-//    }
-//
-//    @Test
-//    @DisplayName("Удаление существующей новости")
-//    public void should4() {
-//
-//    }
+
+///Фильтрация новостей в режиме редактирования списка
+
+    @Test
+    @DisplayName("Создание новости")
+    public void shouldCreateNews() {
+        String currentDate = new SimpleDateFormat("dd.MM.YYYY").format(new Date());
+
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickNewsButton();
+        NewsSteps.clickEditNewsButton();
+
+        NewsSteps.createNews(NewsData.notice, "Объявление", "Test description");
+        NewsSteps.checkCreateNews(currentDate, "Test description");
+    }
 
 
+    @Test
+    @DisplayName("Редактирование новости")
+    public void shouldEditNews() {
+        String currentDate = new SimpleDateFormat("dd.MM.YYYY").format(new Date());
+
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickNewsButton();
+        NewsSteps.clickEditNewsButton();
+
+        NewsSteps.createNews(NewsData.notice, "Check edit news", "Check edit news");
+        NewsSteps.checkCreateNews(currentDate, "Check edit news");
+
+        NewsSteps.editNews(NewsData.massage, NewsData.massage, NewsData.massage);
+        NewsSteps.checkCreateNews(currentDate, NewsData.massage);
+
+    }
+
+    @Test
+    @DisplayName("Удаление новости")
+    public void shouldRemoteNews() {
+        String currentDate = new SimpleDateFormat("dd.MM.YYYY").format(new Date());
+
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickNewsButton();
+        NewsSteps.clickEditNewsButton();
+
+        NewsSteps.createNews(NewsData.notice, "Check remote news", "Check remote news");
+        NewsSteps.checkCreateNews(currentDate, "Check remote news");
+
+        NewsSteps.deleteNews();
+        NewsSteps.checkRemoteNews("Check remote news");
+    }
+
+
+    @Test
+    @DisplayName("Выход из режима редактирования новости без сохранения")
+    public void shouldNotSaveChanges() {
+        String currentDate = new SimpleDateFormat("dd.MM.YYYY").format(new Date());
+
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickNewsButton();
+        NewsSteps.clickEditNewsButton();
+
+        NewsSteps.createNews(NewsData.help, NewsData.help, "Check edit news");
+        NewsSteps.checkCreateNews(currentDate, "Check edit news");
+
+        NewsSteps.buttonEditNews();
+        NewsSteps.insertTitle("Not changes");
+        NewsSteps.insertDescription("Not changes");
+        NewsSteps.clickButtonCancel();
+        NewsSteps.clickButtonOk();
+
+        NewsSteps.checkCreateNews(currentDate, "Check edit news");
+    }
+
+
+    @Test
+    @DisplayName("Создание новости с пустыми полями")
+    public void shouldShowWarningWhenAllFieldEmpty() {
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickNewsButton();
+        NewsSteps.clickEditNewsButton();
+
+        NewsSteps.buttonCreateNews();
+        NewsSteps.clickButtonSave();
+        NewsSteps.checkShowWarning(activityTestRule);
+    }
 
 }

@@ -31,13 +31,17 @@ public class NewsData {
 
     // Сортировка новостей
     public static ViewInteraction sortNewsButton = onView(withId(R.id.sort_news_material_button));
-
     public static ViewInteraction recyclerView = onView(withId(R.id.news_list_recycler_view));
-
-
-
-
-
+    public static ViewInteraction editNewsButton = onView(withId(R.id.edit_news_material_button));
+    public static ViewInteraction addNewsButton = onView(withId(R.id.add_news_image_view));
+    public static ViewInteraction fieldPublicationDate = onView(withId(R.id.news_item_publish_date_text_input_edit_text));
+    public static ViewInteraction fieldTime = onView(withId(R.id.news_item_publish_time_text_input_edit_text));
+    public static ViewInteraction fieldDescription = onView(withId(R.id.news_item_description_text_input_edit_text));
+    public static ViewInteraction saveButton = onView(withId(R.id.save_button));
+    public static ViewInteraction cancelButton = onView(withId(R.id.cancel_button));
+    public static ViewInteraction fieldTitle = onView(withId(R.id.news_item_title_text_input_edit_text));
+    public static ViewInteraction buttonOkInDateWindow = onView(withId(android.R.id.button1));
+    public static ViewInteraction buttonOpenNews = onView(withId(R.id.view_news_item_image_view));
 
 
 
