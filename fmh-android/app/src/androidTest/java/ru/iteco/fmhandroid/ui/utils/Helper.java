@@ -1,6 +1,12 @@
 package ru.iteco.fmhandroid.ui.utils;
 
 
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.internal.util.Checks.checkArgument;
+import static org.hamcrest.Matchers.allOf;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -8,9 +14,13 @@ import android.view.ViewParent;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.matcher.BoundedMatcher;
 
+import com.google.android.apps.common.testing.accessibility.framework.replacements.TextUtils;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+
+import java.util.Random;
 
 public class Helper {
 
@@ -89,6 +99,26 @@ public class Helper {
         };
     }
 
+    public static Matcher<View> withItemText(final String itemText) {
+        checkArgument(!TextUtils.isEmpty(itemText), "itemText cannot be null or empty");
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public boolean matchesSafely(View item) {
+                return allOf(
+                        isDescendantOfA(isAssignableFrom(RecyclerView.class)),
+                        withText(itemText)).matches(item);
+            }
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("is isDescendantOfA RV with text " + itemText);
+            }
+        };
+    }
 
+    public static int randInt(int min, int max) {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+        return randomNum;
+    }
 
 }

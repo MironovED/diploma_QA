@@ -110,6 +110,7 @@ public class NewsSteps {
     public static void clickButtonSave() {
         NewsData.saveButton.perform(click());
     }
+
     public static void clickButtonCancel() {
         NewsData.cancelButton.perform(click());
     }
@@ -146,8 +147,6 @@ public class NewsSteps {
                 .inRoot(withDecorView(not(is(activityTestRule.getActivity().getWindow()
                         .getDecorView())))).check(matches(withText("Fill empty fields")));
     }
-
-
 
     public static void editNews(String Category, String textTitle, String textDescription){
         onView(Helper.withIndex(withId(R.id.edit_news_item_image_view), 0)).perform(click());

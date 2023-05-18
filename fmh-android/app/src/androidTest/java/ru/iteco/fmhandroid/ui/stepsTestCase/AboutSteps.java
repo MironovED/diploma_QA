@@ -26,7 +26,6 @@ public class AboutSteps {
         ActionBarSteps.checkIsOpenAbout();
     }
 
-
     public static void checkTheSuccessfulTransitionToPrivacyPolicy() {
         intended(allOf(
                 hasData("https://vhospice.org/#/privacy-policy/"),

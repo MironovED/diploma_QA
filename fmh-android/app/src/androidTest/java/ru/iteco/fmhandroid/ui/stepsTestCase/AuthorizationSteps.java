@@ -71,5 +71,4 @@ public class AuthorizationSteps {
         AuthorizationData.logOutButton.perform(click());
         AuthorizationData.textExit.perform(click());
     }
-
 }

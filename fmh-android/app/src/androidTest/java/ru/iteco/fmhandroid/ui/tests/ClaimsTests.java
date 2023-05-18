@@ -1,5 +1,7 @@
 package ru.iteco.fmhandroid.ui.tests;
 
+import static androidx.test.espresso.action.ViewActions.click;
+
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -13,9 +15,11 @@ import org.junit.runner.RunWith;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.dataTestCase.AuthorizationData;
+import ru.iteco.fmhandroid.ui.dataTestCase.ClaimsData;
 import ru.iteco.fmhandroid.ui.stepsTestCase.ActionBarSteps;
 import ru.iteco.fmhandroid.ui.stepsTestCase.AuthorizationSteps;
 import ru.iteco.fmhandroid.ui.stepsTestCase.ClaimsSteps;
+import ru.iteco.fmhandroid.ui.utils.Helper;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -40,12 +44,12 @@ public class ClaimsTests {
     public void shouldBeFilteredByOpen() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
-        ClaimsSteps.clickClaimsFilterButton();
 
+        ClaimsSteps.clickClaimsFilterButton();
         ClaimsSteps.clickCheckBoxInProgress();
         ClaimsSteps.clickButtonOkInFiltering();
-
         ClaimsSteps.clickFirstClaim();
+
         ClaimsSteps.checkStatusClaim("Open");
     }
 
@@ -54,12 +58,12 @@ public class ClaimsTests {
     public void shouldBeFilteredByInProgress() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
-        ClaimsSteps.clickClaimsFilterButton();
 
+        ClaimsSteps.clickClaimsFilterButton();
         ClaimsSteps.clickCheckBoxOpen();
         ClaimsSteps.clickButtonOkInFiltering();
-
         ClaimsSteps.clickFirstClaim();
+
         ClaimsSteps.checkStatusClaim("In progress");
     }
 
@@ -68,14 +72,14 @@ public class ClaimsTests {
     public void shouldBeFilteredByExecuted() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
-        ClaimsSteps.clickClaimsFilterButton();
 
+        ClaimsSteps.clickClaimsFilterButton();
         ClaimsSteps.clickCheckBoxOpen();
         ClaimsSteps.clickCheckBoxInProgress();
         ClaimsSteps.clickCheckBoxExecuted();
         ClaimsSteps.clickButtonOkInFiltering();
-
         ClaimsSteps.clickFirstClaim();
+
         ClaimsSteps.checkStatusClaim("Executed");
     }
 
@@ -84,15 +88,73 @@ public class ClaimsTests {
     public void shouldBeFilteredByCancelled() {
         ActionBarSteps.clickMainMenuButton();
         ActionBarSteps.clickClaimsButton();
-        ClaimsSteps.clickClaimsFilterButton();
 
+        ClaimsSteps.clickClaimsFilterButton();
         ClaimsSteps.clickCheckBoxOpen();
         ClaimsSteps.clickCheckBoxInProgress();
         ClaimsSteps.clickCheckBoxCancelled();
         ClaimsSteps.clickButtonOkInFiltering();
-
         ClaimsSteps.clickFirstClaim();
+
         ClaimsSteps.checkStatusClaim("Canceled");
     }
 
+    @Test
+    @DisplayName("Создание заявки")
+    public void shouldCreateClaim() {
+        int randValue = Helper.randInt(100,1000);
+        String text = "test" + randValue;
+
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickClaimsButton();
+
+        ClaimsSteps.createClaim(text); //Необходимо каждый раз вводить новые данные
+        ClaimsSteps.checkCreateClaim(text);
+    }
+
+    @Test
+    @DisplayName("Создание заявки с пустыми полями")
+    public void shouldShowWarningWhenAllFieldEmpty() {
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickClaimsButton();
+
+        ClaimsData.buttonCreateClaim.perform(click());
+        ClaimsData.saveButton.perform(click());
+
+        ClaimsSteps.checkShowWarning(activityTestRule);
+    }
+
+    @Test
+    @DisplayName("Редактирование существующей заявки")
+    public void shouldEditClaim() {
+        int randValue = Helper.randInt(100,1000);
+        String text = "test" + randValue;
+        String textNew = "testNew" + randValue;
+
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickClaimsButton();
+
+        ClaimsSteps.createClaim(text); //Необходимо каждый раз вводить новые данные
+        ClaimsSteps.selectApplicationByDescription(text);
+        ClaimsSteps.editStatusThrowOff();
+        ClaimsSteps.editClaim(textNew, textNew);
+
+        ClaimsSteps.checkEditClaim(textNew, textNew);
+    }
+
+    @Test
+    @DisplayName("Изменения статуса заявки")
+    public void shouldEditStatus() {
+        int randValue = Helper.randInt(100,1000);
+        String text = "test" + randValue;
+
+        ActionBarSteps.clickMainMenuButton();
+        ActionBarSteps.clickClaimsButton();
+
+        ClaimsSteps.createClaim(text);
+        ClaimsSteps.selectApplicationByDescription(text);
+        ClaimsSteps.editStatusToExecute();
+
+        ClaimsSteps.checkStatus("Executed");
+    }
 }

@@ -22,5 +22,4 @@ public class AuthorizationData {
     public static ViewInteraction textExit = onView(withText("Log out"));
     public static ViewInteraction textAuthorization = onView(withText("Authorization"));
 
-
 }
