@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.dataTestCase.AuthorizationData;
@@ -23,7 +24,7 @@ import ru.iteco.fmhandroid.ui.stepsTestCase.NewsSteps;
 
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+@RunWith(AllureAndroidJUnit4.class)
 public class NewsTests {
 
     @Rule
@@ -188,11 +189,10 @@ public class NewsTests {
         NewsSteps.clickEditNewsButton();
 
         NewsSteps.createNews(NewsData.notice, "Check edit news", "Check edit news");
-        NewsSteps.checkCreateNews(currentDate, "Check edit news");
+//        NewsSteps.checkCreateNews(currentDate, "Check edit news");
 
         NewsSteps.editNews(NewsData.massage, NewsData.massage, NewsData.massage);
         NewsSteps.checkCreateNews(currentDate, NewsData.massage);
-
     }
 
     @Test

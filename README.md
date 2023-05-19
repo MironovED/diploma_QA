@@ -29,4 +29,4 @@
 
 1. Открыть проект fmh-android в Android Studio.
 2. Запустить эмулятор (API 29) или подключить устройство для тестирования.
-3. Запустить тесты
+3. Запустить все тесты в директории app\src\androidTest\java\ru\iteco\fmhandroid\ui\tests
