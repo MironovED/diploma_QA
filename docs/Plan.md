@@ -6,7 +6,7 @@
 -   новостную сводку хосписа;
 -   тематические цитаты.
 
-![main_activity](https://raw.githubusercontent.com/MironovED/diploma_QA_2023/master/pic/main_activity.png)
+![main_activity](https://raw.githubusercontent.com/MironovED/diploma_QA/master/pic/Screenshot_1.png)
 
 ---
 
