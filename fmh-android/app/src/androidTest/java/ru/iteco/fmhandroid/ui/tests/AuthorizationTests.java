@@ -72,7 +72,7 @@ public class AuthorizationTests {
 
     @Test
     @DisplayName("Повторная авторизация после выхода из учетной записи")
-    public void shouldLogInAfterLogOut() {
+    public void shouldLogInAfterLogOut() throws InterruptedException {
         AuthorizationSteps.enterLogin(AuthorizationData.validLogin);
         AuthorizationSteps.enterPass(AuthorizationData.validPass);
         AuthorizationSteps.clickEnterButton();
@@ -86,7 +86,7 @@ public class AuthorizationTests {
         AuthorizationSteps.enterPass(AuthorizationData.validPass);
         AuthorizationSteps.clickEnterButton();
 
-        //Валится тест на проверке
+        Thread.sleep(1000);
         AuthorizationSteps.checkAuthorization();
     }
 
