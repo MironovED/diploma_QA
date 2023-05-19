@@ -30,3 +30,6 @@
 1. Открыть проект fmh-android в Android Studio.
 2. Запустить эмулятор (API 29) или подключить устройство для тестирования.
 3. Запустить все тесты в директории app\src\androidTest\java\ru\iteco\fmhandroid\ui\tests
+4. Сохранить каталог /data/data/ru.iteco.fmhandroid/files/allure-results при помощи Device File Explorer в директорию с проектом.
+5. В терминале выполнить команду
+    > **\***allure serve**\***
